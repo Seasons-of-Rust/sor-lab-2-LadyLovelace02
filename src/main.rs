@@ -68,22 +68,22 @@ fn validate_simulation() {
     let count = simulate(starting_rabbits);
 
     assert_eq!(count, 91);
-    println!("Validation complete ✅\n");
+    println!("validation complete ✅\n");
 }
-
+fn rabbitRoundSim(numRabbits: i128, numDays: i32) -> i32 {
+    if numRabbits <= 1 {
+        return numDays;
+    }
+    if numRabbits % 2 != 0 {
+        return rabbitRoundSim(3*numRabbits+1, numDays+1);
+    } else if numRabbits % 2 == 0 {
+        return rabbitRoundSim(numRabbits/2, numDays+1);
+    }
+    -1 
+}
 /// Simulate the rabbit population
 fn simulate(starting_rabbits: i128) -> i32 {
-    let mut remainingRabits: i128 = starting_rabbits;
-    let mut numDays: i32 = 0;
-    while remainingRabits > 1 {
-        numDays += 1;
-        if remainingRabits % 2 != 0 {
-            remainingRabits = 3 * remainingRabits + 1;
-        } else if remainingRabits % 2 == 0 {
-            remainingRabits = remainingRabits / 2;
-        }
-    }
-    numDays
+    return rabbitRoundSim(starting_rabbits, 0);
 }
 
 #[cfg(test)]
