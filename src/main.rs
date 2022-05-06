@@ -77,7 +77,7 @@ fn simulate(starting_rabbits: i128) -> i32 {
     let mut numDays: i32 = 0;
     while remainingRabits > 1 {
         numDays += 1;
-        if (remainingRabits % 2 != 0) {
+        if remainingRabits % 2 != 0 {
             remainingRabits = 3 * remainingRabits + 1;
         } else if remainingRabits % 2 == 0 {
             remainingRabits = remainingRabits / 2;
