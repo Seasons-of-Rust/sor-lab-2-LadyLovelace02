@@ -22,7 +22,7 @@ fn validate_grading_system() {
 
 /// Calculate the grade
 fn calculate_grade(carrots: i32, nuts: i32, seeds: i32) -> i32 {
-    todo!()
+    (carrots + nuts) * (carrots + nuts + seeds)
 }
 
 /// Validate the safety system
@@ -49,7 +49,13 @@ fn calculate_safety_status(
     has_carrot: bool,
     friends_nearby: i32,
 ) -> bool {
-    todo!()
+    if wolves_nearby == true || day_time == false {
+        if has_carrot == true || friends_nearby > 3 {
+            return true;
+        }
+        return false;
+    }
+    return true;
 }
 
 /// Validate the simulation
@@ -67,7 +73,17 @@ fn validate_simulation() {
 
 /// Simulate the rabbit population
 fn simulate(starting_rabbits: i128) -> i32 {
-    todo!()
+    let mut remainingRabits: i128 = starting_rabbits;
+    let mut numDays: i32 = 0;
+    while remainingRabits > 1 {
+        numDays += 1;
+        if remainingRabits % 2 != 0 {
+            remainingRabits = 3 * remainingRabits + 1;
+        } else if remainingRabits % 2 == 0 {
+            remainingRabits = remainingRabits / 2;
+        }
+    }
+    numDays
 }
 
 #[cfg(test)]
